@@ -30,7 +30,7 @@ jobs:
           echo "${{ steps.semantic_version_dry.outputs.changelog }}" | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
           sed -i --regexp-extended -e 's/(Version = )("[[:digit:]]\.[[:digit:]]\.[[:digit:]](-.*)?")/Version = "${{ steps.semantic_version_dry.outputs.new_version }}"/' ./FaceitIntegration/FaceitIntegration_StreamlabsSystem.py
       - name: Commit and Push new changes
-        if: contains(github.ref, 'main')
+        if: contains(github.ref, 'main') && contains(steps.semantic_version_dry.outputs.new_tag, "v")
         run: |
           git add CHANGELOG.md
           git add ./FaceitIntegration/FaceitIntegration_StreamlabsSystem.py
