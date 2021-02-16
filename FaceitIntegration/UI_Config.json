@@ -14,6 +14,13 @@
     "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
     "group": "Common Messages"
   },
+  "faceitPermissionMessage": {
+    "type": "textbox",
+    "value": "$username, gotcha! You don't have permission to use $command",
+    "label": "Cooldown message",
+    "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
+    "group": "Common Messages"
+  },
   "faceitEloCommand": {
     "type": "textbox",
     "value": "!elo",
