@@ -1,3 +1,19 @@
+# [0.3.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.2.0...v0.3.0) (2021-02-16)
+
+
+### Bug Fixes
+
+* **settings:** update dictionary instead of setting attributes on reset_settings method ([153f406](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/153f4067286edae0e58fdebfe7b67227091b15d2))
+
+
+### Features
+
+* **core:** check if the user has permission to run a command before executing it ([50d8141](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/50d8141703ab950aa960e0657433e5d1bf7bcd2b))
+* **ui-settings:** add faceitPermissionSettings to common messages section ([083c006](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/083c00639f07264f1d3021c8d3d5f09f3b2bd95a))
+
+
+
+
 # [0.2.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.1.0...v0.2.0) (2021-02-16)
 
 
