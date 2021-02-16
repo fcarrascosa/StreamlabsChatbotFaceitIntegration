@@ -9,7 +9,7 @@
   },
   "faceitCooldownMessage": {
     "type": "textbox",
-    "value": "$username, not too fast! You need to wait $coolwodnTimer seconds till you can use $command again",
+    "value": "$username, not too fast! You need to wait $cooldownTimer seconds till you can use $command again",
     "label": "Cooldown message",
     "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
     "group": "Common Messages"
