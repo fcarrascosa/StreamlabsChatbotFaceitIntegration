@@ -62,8 +62,10 @@ def Execute(data):
         }
         commandToExecute = data.GetParam(0).lower()
         functionToExecute = functionPerCommand[commandToExecute]
+        user = data.User
+        userName = data.UserName
 
-        if not checkCooldownForCommand(commandToExecute, data.UserName, data.User):
+        if checkPermissionForUser(commandToExecute, userName, user) and not checkCooldownForCommand(commandToExecute, userName, user):
             functionToExecute(data)
 
     return
@@ -88,7 +90,7 @@ def Parse(parseString, userid, username, targetid, targetname, message):
 # ---------------------------
 def ReloadSettings(jsonData):
     # Execute json reloading here
-    Settings.__dict__ = json.loads(jsonData)
+    Settings.Reload(jsonData)
     Settings.Save(settingsFile)
     checkApiKey(Settings)
     return
@@ -174,8 +176,26 @@ def checkCooldownForCommand(command, username, user):
 
     return value
 
+# ---------------------------
+#   Checking if user has permission to run command
+# ---------------------------
+def checkPermissionForUser(command, username, user):
+    value = True
+    permissionPerCommand = {
+       Settings.faceitEloCommand: Settings.faceitEloPermission
+    }
+    specificPermissionPerCommand = {
+        Settings.faceitEloCommand: Settings.faceitEloPermissionSpecific
+    }
 
-
+    if not Parent.HasPermission(user, permissionPerCommand[command], specificPermissionPerCommand[command]):
+        message = Settings.faceitPermissionMessage
+        message = message.replace("$command", command)
+        message = message.replace("$username", username)
+        Parent.SendStreamMessage(message)
+        value = False
+        
+    return value
 # ------------------------------------------------------------
 #   Action functions
 # ------------------------------------------------------------
