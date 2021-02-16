@@ -17,8 +17,8 @@
   "faceitPermissionMessage": {
     "type": "textbox",
     "value": "$username, gotcha! You don't have permission to use $command",
-    "label": "Cooldown message",
-    "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
+    "label": "Permission Error Message",
+    "tooltip": "The message that will be sent to chat when the user of a command does not have permission to use it",
     "group": "Common Messages"
   },
   "faceitEloCommand": {
