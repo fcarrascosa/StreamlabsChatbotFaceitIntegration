@@ -27,7 +27,7 @@ ScriptName = "Faceit Integration"
 Website = "https://fcarrascosa.es"
 Description = "A simple script to integrate with faceit"
 Creator = "Fernando Carrascosa"
-Version = "0.3.0"
+Version = "0.3.1"
 
 # ---------------------------
 #   Define Global Variables

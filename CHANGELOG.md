@@ -1,3 +1,13 @@
+## [0.3.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.3.0...v0.3.1) (2021-02-16)
+
+
+### Bug Fixes
+
+* **settings:** set correct label and tooltip for permission error message ([f052c0e](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/f052c0eaee35055f7e6a04a1018e42af1c36c16d))
+
+
+
+
 # [0.3.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.2.0...v0.3.0) (2021-02-16)
 
 
