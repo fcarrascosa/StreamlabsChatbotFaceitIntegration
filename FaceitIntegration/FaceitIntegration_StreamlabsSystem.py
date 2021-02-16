@@ -60,8 +60,11 @@ def Execute(data):
         functionPerCommand = {
             Settings.faceitEloCommand: playerElo
         }
+        commandToExecute = data.GetParam(0).lower()
+        functionToExecute = functionPerCommand[commandToExecute]
 
-        functionPerCommand[data.GetParam(0).lower()](data)
+        if not checkCooldownForCommand(commandToExecute, data.UserName, data.User):
+            functionToExecute(data)
 
     return
 
@@ -153,10 +156,25 @@ def checkFaceitEloDefaultUser(settings):
 #   Checking cooldown for command
 # ---------------------------
 
-def checkCooldown(data):
-    cooldownMessages = [
+def checkCooldownForCommand(command, username, user):
+    value = False
+    cooldownPerCommand = {
+        Settings.faceitEloCommand: Settings.faceitEloCooldown
+    }
 
-    ]
+    if Parent.IsOnUserCooldown(ScriptName, command, user):
+        message = Settings.faceitCooldownMessage
+        message = message.replace("$command", command)
+        message = message.replace("$username", username)
+        message = message.replace("$cooldownTimer", str(Parent.GetUserCooldownDuration(ScriptName,command,user)))
+        Parent.SendStreamMessage(message)
+        value = True
+    else:
+        Parent.AddUserCooldown(ScriptName, command, user, cooldownPerCommand[command])
+
+    return value
+
+
 
 # ------------------------------------------------------------
 #   Action functions
