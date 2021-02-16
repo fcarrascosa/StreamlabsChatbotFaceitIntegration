@@ -34,7 +34,7 @@ class FaceitIntegrationSettings(object):
 
             for key in dictionary:
                 if (not key in ["output_file"]) and "value" in dictionary[key].keys():
-                    setattr(self, key, dictionary[key]["value"])
+                    self.__dict__[key] = dictionary[key]["value"]
 
     def getCommands(self):
         return [
