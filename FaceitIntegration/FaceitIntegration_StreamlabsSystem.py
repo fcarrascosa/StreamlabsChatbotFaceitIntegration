@@ -3,6 +3,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 from file_system import create_directory
+from script_settings import FaceitIntegrationSettings
 
 # ---------------------------
 #   Script Information
@@ -17,8 +18,9 @@ Version = "0.3.1"
 # ---------------------------
 #   Global Variables
 # ---------------------------
-settings_directory = os.path.join(os.path.dirname(__file__), 'settings')
-settings_file = os.path.join(settings_directory, 'settings.json')
+SETTINGS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'settings')
+SETTINGS_FILE = os.path.join(SETTINGS_DIRECTORY, 'settings.json')
+SETTINGS = FaceitIntegrationSettings()
 
 
 # ---------------------------
@@ -30,7 +32,8 @@ def Init():
     :return: void
     """
 
-    create_directory(settings_directory)
+    create_directory(SETTINGS_DIRECTORY)
+    SETTINGS.save(SETTINGS_FILE)
     return
 
 
@@ -49,3 +52,11 @@ def Tick():
     """
 
     return
+
+
+def ReloadSettings(json_data):
+    """[Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
+
+    :param json_data: the settings object
+    :return: void
+    """
