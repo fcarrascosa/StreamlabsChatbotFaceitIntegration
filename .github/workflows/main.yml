@@ -24,6 +24,7 @@ jobs:
           create_annotated_tag: true
           dry_run: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          pre_release_branches: develop
       - name: Update version and Changelog
         run: |
           touch CHANGELOG.md
