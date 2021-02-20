@@ -60,3 +60,5 @@ def ReloadSettings(json_data):
     :param json_data: the settings object
     :return: void
     """
+
+    SETTINGS.load_settings(json_data)
