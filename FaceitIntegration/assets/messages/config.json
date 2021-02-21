@@ -1,0 +1,4 @@
+{
+  "error_config_header": "FaceitIntegration - Config Error",
+  "error_config_body": "There are some missing required core config items.\nPlease, check the Base section on this script settings."
+}
