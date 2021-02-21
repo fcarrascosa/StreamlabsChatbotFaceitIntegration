@@ -6,6 +6,10 @@ NON_PROPERTY_KEYS = [
     'output_file'
 ]
 
+CORE_REQUIRED_KEYS = [
+    'faceit_api_key'
+]
+
 
 class FaceitIntegrationSettings(object):
     def __init__(self, settings_file=None):
@@ -38,3 +42,13 @@ class FaceitIntegrationSettings(object):
 
     def load_settings(self, json_data):
         self.__dict__ = json.loads(json_data, encoding="utf-8")
+
+    def validate_core_fields(self):
+        """
+
+        :return: bool
+        """
+        return_value = True
+        for key in CORE_REQUIRED_KEYS:
+            return_value = return_value if return_value and self.__getattribute__(key) else False
+        return return_value
