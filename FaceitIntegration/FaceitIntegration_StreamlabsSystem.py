@@ -33,7 +33,7 @@ def Init():
     """
 
     create_directory(SETTINGS_DIRECTORY)
-    SETTINGS.save(SETTINGS_FILE)
+    SETTINGS.save(SETTINGS_FILE, ScriptName, Parent)
     return
 
 
@@ -62,3 +62,6 @@ def ReloadSettings(json_data):
     """
 
     SETTINGS.load_settings(json_data)
+    Parent.Log("SYSTEM", "RELOAD SETTINGS")
+    SETTINGS.save(SETTINGS_FILE, ScriptName, Parent)
+    return
