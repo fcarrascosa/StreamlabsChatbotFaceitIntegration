@@ -1,3 +1,10 @@
 {
-  "output_file": "settings/settings.json"
+  "output_file": "settings/settings.json",
+  "faceit_api_key": {
+    "type": "textbox",
+    "value": "",
+    "label": "Faceit API Key (Required)",
+    "tooltip": "Your Faceit Application API key",
+    "group": "Base"
+  }
 }
