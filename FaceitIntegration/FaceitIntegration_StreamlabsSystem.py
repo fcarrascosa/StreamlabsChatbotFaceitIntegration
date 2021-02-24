@@ -24,7 +24,7 @@ Version = "0.3.1"
 # ---------------------------
 SETTINGS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'settings')
 SETTINGS_FILE = os.path.join(SETTINGS_DIRECTORY, 'settings.json')
-SETTINGS = FaceitIntegrationSettings()
+SETTINGS = FaceitIntegrationSettings(SETTINGS_FILE)
 ASSETS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'assets')
 MESSAGES_DIRECTORY = os.path.join(ASSETS_DIRECTORY, 'messages')
 
