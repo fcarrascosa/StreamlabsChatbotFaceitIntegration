@@ -54,7 +54,7 @@
   },
   "faceit_elo_message": {
     "type": "textbox",
-    "value": "$username, the Faceit ELO for $arg1 is $elo that makes him Level $level.",
+    "value": "$username, the Faceit ELO for $arg1 is $elo that makes him level $level.",
     "label": "Message",
     "tooltip": "The message that will be sent to chat when using the command",
     "group": "Elo Check Command"
