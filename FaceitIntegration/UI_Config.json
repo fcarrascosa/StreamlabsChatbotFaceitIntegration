@@ -6,5 +6,64 @@
     "label": "Faceit API Key (Required)",
     "tooltip": "Your Faceit Application API key",
     "group": "Base"
+  },
+  "faceit_elo_command": {
+    "type": "textbox",
+    "value": "!elo",
+    "label": "Command",
+    "tooltip": "The text that should trigger the Faceit Elo Check command",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_default_user": {
+    "type": "textbox",
+    "value": "",
+    "label": "Your faceit nickname (MANDATORY)",
+    "tooltip": "This is the user the command is going to check when no param is included",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_permission": {
+    "type": "dropdown",
+    "value": "everyone",
+    "items": [
+      "everyone",
+      "moderator",
+      "subscriber",
+      "user_specific",
+      "editor"
+    ],
+    "label": "User Permission",
+    "tooltip": "The group of users that can use this command",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_permission_specific": {
+    "type": "textbox",
+    "value": "",
+    "label": "Specific User",
+    "tooltip": "This field should only be filled when User Permission is set to user_specific.",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_cooldown": {
+    "type": "slider",
+    "value": 30,
+    "min": 1,
+    "max": 300,
+    "ticks": 1,
+    "label": "Cooldown (in seconds)",
+    "tooltip": "How much time an user has to wait before using this command again",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_message": {
+    "type": "textbox",
+    "value": "$username, the Faceit ELO for $arg1 is $elo that makes him Level $level.",
+    "label": "Message",
+    "tooltip": "The message that will be sent to chat when using the command",
+    "group": "Elo Check Command"
+  },
+  "faceit_elo_error_message": {
+    "type": "textbox",
+    "value": "Nice try, $username, but $arg1's ELO is under a rock, 'cause I can't find it.",
+    "label": "Error Message",
+    "tooltip": "The message that will be sent to chart when using the command and there's an error",
+    "group": "Elo Check Command"
   }
 }

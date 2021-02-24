@@ -92,7 +92,8 @@ follows.
 | ------------- | --------------------------------------------------------------- |
 | **$username** | The user that called this command                               |
 | **$arg1**     | The user whose elo is being checked. By default is **Nickname** |
-| **$value**    | The value for ELO the script has found                          |
+| **$elo**      | The value for ELO the script has found                          |
+| **$level**    | The value for Level the script has found                        |
 
 Let's illustrate them with an example:
 
