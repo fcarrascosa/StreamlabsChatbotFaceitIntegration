@@ -52,3 +52,11 @@ class FaceitIntegrationSettings(object):
         for key in CORE_REQUIRED_KEYS:
             return_value = return_value if return_value and self.__getattribute__(key) else False
         return return_value
+
+    def get_commands(self):
+        return_value = dict()
+
+        for (key, value) in self.__dict__.items():
+            if key.endswith('_command'):
+                return_value[key] = value
+        return return_value
