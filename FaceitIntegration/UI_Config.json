@@ -7,6 +7,20 @@
     "tooltip": "Your Faceit Application API key",
     "group": "Base"
   },
+  "faceit_cooldown_message": {
+    "type": "textbox",
+    "value": "$username, not too fast! You need to wait $cooldownTimer seconds till you can use $command again",
+    "label": "Cooldown message",
+    "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
+    "group": "Common Messages"
+  },
+  "faceit_permission_message": {
+    "type": "textbox",
+    "value": "$username, gotcha! You don't have permission to use $command",
+    "label": "Permission Error Message",
+    "tooltip": "The message that will be sent to chat when the user of a command does not have permission to use it",
+    "group": "Common Messages"
+  },
   "faceit_elo_command": {
     "type": "textbox",
     "value": "!elo",
@@ -14,7 +28,7 @@
     "tooltip": "The text that should trigger the Faceit Elo Check command",
     "group": "Elo Check Command"
   },
-  "faceit_elo_default_user": {
+  "faceit_elo_default_argument": {
     "type": "textbox",
     "value": "",
     "label": "Your faceit nickname (MANDATORY)",
