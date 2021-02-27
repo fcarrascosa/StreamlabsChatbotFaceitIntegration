@@ -1,3 +1,40 @@
+# [1.0.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.3.1...v1.0.0) (2021-02-27)
+
+
+### Bug Fixes
+
+* **settings:** load initial settings file if exists on init ([757aa32](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/757aa32b0dbc5015d22bb18ad85e3c49eb8e1eb2))
+
+
+### Features
+
+* **api-client:** add faceit api client class ([8ae61c9](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/8ae61c909edd9e130d7ff068de5f8fc1c30a1848))
+* **command:** add command executor ([10df0c5](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/10df0c5b26cd1f76425b6a37de09485da4e3e66e))
+* **commands:** add faceit elo command to ui settings ([345829c](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/345829c1a9302ba9f0e890b5a49dd40f8196d8ea))
+* **core:** add messaging module and default error messages ([c323806](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/c323806174e6cea99b6a9fbc13c2f0aec88cc84b))
+* **core:** add settings manager ([5832bba](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/5832bbad32ca5df27004d32dd683a5e93cc52ef5))
+* **core:** enable get elo command ([17642b5](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/17642b5c6c7a41a7d28b649e70db73bc3f7d47fb))
+* **core:** remove unnecessary import ([331cefd](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/331cefdaea27a2cb75edd50be3ac0d7a4b7a9dd5))
+* **core:** validate settings after saving them ([e7cdb8d](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/e7cdb8da8d8c81105b35a4315dd33f16943ebd17))
+* **refactor:** removed all previous files and re-design directory access pattern ([9bae564](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/9bae5648a83f42b7eeb85977a78de47d75e0a7b9))
+* **settings:** add appropriate params to save on script Init and ReloadSettings ([887d1fe](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/887d1fe6c8e552ecb3e1a8b7024eba65f3a9dc6b))
+* **settings:** add get_commands method to settings class ([aca1b9b](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/aca1b9b0ec6964c68757aa9df94524334e01d608))
+* **settings:** add validation for required fields method ([36d4d06](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/36d4d068c61e1f6d3b6e1c5a25d448a232b59da2))
+* **settings:** save new settings on clicking the save settings ui button ([ddec115](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/ddec1151b6b0232f449d00ea4719a8e94b1929a0))
+* **ui-config:** add faceit api key setting ([e2ed7e3](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/e2ed7e31e4afd67fef6550f0c7f80e04af569024))
+* **ui-config:** add general messages and modify name for default argument ([f75d369](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/f75d369070b9c4867629ebbf981c88177729049a))
+* **ui-config:** update string for faceit elo message ([3b7d1b0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/3b7d1b0ff53edeac9a82c5937ac1adef625af7c4))
+
+
+### BREAKING CHANGES
+
+* **commands:**  is replaced in ELO Check Command for 
+* **settings:** get_commands now returns a dictionary with the name of the command and the value for it stored in settings
+* **ui-config:** default_user for commands is now called default_argument
+
+
+
+
 ## [0.3.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.3.0...v0.3.1) (2021-02-16)
 
 
