@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 import messaging
 from file_system import create_directory
 from script_settings import FaceitIntegrationSettings
+from command import Command
 
 # ---------------------------
 #   Script Information
@@ -49,6 +50,15 @@ def Execute(data):
     :param data: the Data object provided by SLCB
     :return: void
     """
+
+    if data.IsChatMessage():
+        possible_command = data.GetParam(0)
+        commands = SETTINGS.get_commands()
+
+        if possible_command in commands.values():
+            command_key = commands.keys()[commands.values().index(possible_command)]
+            command = Command(Parent, SETTINGS, command_key, ScriptName, data)
+            command.execute_command()
 
     return
 

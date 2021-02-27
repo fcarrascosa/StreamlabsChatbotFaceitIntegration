@@ -1,3 +1,6 @@
+from faceit_api_client import FaceitApiClient
+
+
 class Command(object):
     def __init__(self, parent, settings, name, script_name, data):
         self.parent = parent
@@ -49,7 +52,7 @@ class Command(object):
     def check_permission_for_command(self):
         return self.parent.HasPermission(self.user, self.get_permission(), self.get_permission_specific())
 
-    def parse_command_message(self, message_to_parse):
+    def parse_command_message(self, message_to_parse, parsing_keys={}):
         message = message_to_parse
         message = message.replace('$command', self.get_command_name())
         message = message.replace('$username', self.user_name)
@@ -57,6 +60,8 @@ class Command(object):
                                   self.data.GetParam(1) if self.data.GetParam(1) else self.get_default_argument())
         message = message.replace('$cooldownTimer',
                                   str(self.parent.GetUserCooldownDuration(self.script_name, self.name, self.user)))
+        for key, value in parsing_keys.items():
+            message = message.replace("$" + key, str(value))
         return message
 
     def execute_command(self):
@@ -73,7 +78,19 @@ class Command(object):
         else:
             self.set_cooldown_for_command()
 
+        function_per_command = {
+            self.settings.faceit_elo_command: FaceitApiClient(self.settings.faceit_api_key, self.parent).get_player_elo
+        }
+
         message = self.get_message()
-        message = self.parse_command_message(message)
+
+        try:
+            parse_options = function_per_command[self.get_command_name()](
+                self.data.GetParam(1) if self.data.GetParam(1) else self.get_default_argument())
+        except:
+            parse_options = {}
+            message = self.get_error_message()
+
+        message = self.parse_command_message(message, parse_options)
         self.parent.SendStreamMessage(message)
         return
