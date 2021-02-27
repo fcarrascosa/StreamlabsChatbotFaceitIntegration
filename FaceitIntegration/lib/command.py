@@ -1,11 +1,11 @@
 class Command(object):
-    def __init__(self, parent, settings, name, script_name, user, user_name, data):
+    def __init__(self, parent, settings, name, script_name, data):
         self.parent = parent
         self.settings = settings
         self.name = name.replace('_command', '')
         self.script_name = script_name
-        self.user = user
-        self.user_name = user_name
+        self.user = data.User
+        self.user_name = data.UserName
         self.data = data
         return
 
