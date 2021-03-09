@@ -1,4 +1,6 @@
 {
   "error_config_header": "FaceitIntegration - Config Error",
-  "error_config_body": "There are some missing required core config items.\nPlease, check the Base section on this script settings."
+  "error_config_body": "There are some missing required core config items.\nPlease, check the Base section on this script settings.",
+  "new_version_header": "FaceitIntegration - New Version",
+  "new_version_body": "New version {VERSION_NAME} has been released for FaceitIntegration\nPlease check the CHANGELOG and update.\nGo to the downloads page?"
 }
