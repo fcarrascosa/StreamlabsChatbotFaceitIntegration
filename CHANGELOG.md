@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.0.0...v1.1.0) (2021-03-09)
+
+
+### Features
+
+* **core:** add check for new version at startup ([1958157](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/19581572fc69bd6c4afacb9d44eb5d57a527d305))
+
+
+
+
 # [1.0.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v0.3.1...v1.0.0) (2021-02-27)
 
 
