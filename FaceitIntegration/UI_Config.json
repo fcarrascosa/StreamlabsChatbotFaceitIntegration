@@ -7,6 +7,13 @@
     "tooltip": "Your Faceit Application API key",
     "group": "Base"
   },
+  "notification_on_new_version": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Notify me on new version",
+    "tooltip": "When checked, on Streamlabs Chatbot startup the script will check for updates and notify you if there is any",
+    "group": "Base"
+  },
   "faceit_cooldown_message": {
     "type": "textbox",
     "value": "$username, not too fast! You need to wait $cooldownTimer seconds till you can use $command again",
