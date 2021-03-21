@@ -34,9 +34,10 @@ class FaceitIntegrationSettings(object):
     def save(self, settings_file, script_name='', parent=None):
         try:
             with codecs.open(settings_file, encoding='utf-8-sig', mode='w+') as f:
-                json.dump(self.__dict__, f, encoding='utf-8')
+                json.dump(self.__dict__, f, encoding='utf-8', ensure_ascii=False)
             with codecs.open(settings_file.replace('.json', '.js'), encoding='utf-8-sig', mode='w+') as f:
-                f.write('const settings = {0};'.format(json.dumps(self.__dict__, encoding='utf-8')))
+                f.write(
+                    'const settings = {0};'.format(json.dumps(self.__dict__, f, encoding='utf-8', ensure_ascii=False)))
         except:
             parent.Log(script_name, "Failed to save settings file")
 
