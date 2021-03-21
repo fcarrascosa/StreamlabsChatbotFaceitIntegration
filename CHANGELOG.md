@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.1.0...v1.1.1) (2021-03-21)
+
+
+### Bug Fixes
+
+* **settings:** allow accents on settings ([8b01224](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/8b01224ed12b70995140e9e4b21a5ef0b4478761))
+
+
+
+
 # [1.1.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.0.0...v1.1.0) (2021-03-09)
 
 
