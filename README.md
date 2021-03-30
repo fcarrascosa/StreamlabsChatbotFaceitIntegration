@@ -70,7 +70,8 @@ Here you will find brief explanation on how to use the features of this script.
 
 ### Elo Check Command
 
-For this command to work it is **MANDATORY** to fill the FACEIT user's default nickname. You can fill it on "Elo Check"
+For this command to work it is **MANDATORY** to fill the FACEIT user's default nickname. You can fill it on "Elo Check
+Command"
 tab in this script's settings.
 
 Here's a table with the parameters for this script.
@@ -81,7 +82,7 @@ Here's a table with the parameters for this script.
 | Nickname      | text   | This is the user the command is going to check when no param is included           |                                                                               | YES       |
 | Permission    | select | The group of users that can use this command                                       | everyone                                                                      |           |
 | Specific User | text   | This field should only be filled when using the user_specific permission           |                                                                               |           |
-| Cooldown      | slider | How long the command should go on for.                                             | 10                                                                            |           |
+| Cooldown      | slider | How long the command should go on for.                                             | 30                                                                            |           |
 | Message       | text   | The message that will be sent to chat when using the command.                      | $username, the Faceit ELO for $arg1 is $value                                 |           |
 | Error Message | text   | The message that will be sent to chat when using the command and there's an error. | $username, nice try, but $arg1's ELO is under a rock, 'cause I can't find it. |           |
 
@@ -117,3 +118,50 @@ When called with an argument but this argument is a Faceit user that doesn't exi
 SomeGoatUser: !elo AnotherGoatUser
 MyGoatBot: SomeGoatUser, nice try, but AnotherGoatUser's ELO is under a rock, 'cause I can't find it.
 ```
+
+### Session Start Command
+
+Here's a table with the parameters for this script.
+
+Label         | Type   | Description                                                                        | Default                                                                       | Mandatory |
+| ------------- | ------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | --------- |
+| Command       | text   | The text that should trigger the Faceit Session Check command                                  | !startsession                                                                         |           |
+| Permission    | select | The group of users that can use this command                                       | moderator                                                                      |           |
+| Specific User | text   | This field should only be filled when using the user_specific permission           |                                                                               |           |
+| Cooldown      | slider | How long the command should go on for.                                             | 72000 (20 hours)                                                                       |           |
+| Message       | text   | The message that will be sent to chat when using the command.                      | $username, we've played $total_matches games, won $won_matches, lost $lost_matches and this session elo balance is $elo_balance.                                |           |
+| Error Message | text   | The message that will be sent to chat when using the command and there's an error. | Oh, dear, $username, something went wrong trying to get this session's data. Try it again later and if the issue persists contact the streamer.|           |
+
+You see there are some $args in the default texts, you can use them in your own custom messages they are parsed as
+follows.
+
+| Argument      | Description                                                     |
+| ------------- | --------------------------------------------------------------- |
+| **$username** | The user that called this command
+
+### Session Check Command
+
+For this command to work it is **MANDATORY** to fill the FACEIT user's default nickname. You can fill it on "Session
+Check Command" tab in this script's settings.
+
+Here's a table with the parameters for this script.
+
+Label         | Type   | Description                                                                        | Default                                                                       | Mandatory |
+| ------------- | ------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | --------- |
+| Command       | text   | The text that should trigger the Faceit Session Check command                                  | !session                                                                         |           |
+| Nickname      | text   | This is the user the command is going to check           |                                                                               | YES       |
+| Permission    | select | The group of users that can use this command                                       | everyone                                                                      |           |
+| Specific User | text   | This field should only be filled when using the user_specific permission           |                                                                               |           |
+| Cooldown      | slider | How long the command should go on for.                                             | 30                                                                            |           |
+| Message       | text   | The message that will be sent to chat when using the command.                      | $username, we've played $total_matches games, won $won_matches, lost $lost_matches and this session elo balance is $elo_balance.                                |           |
+| Error Message | text   | The message that will be sent to chat when using the command and there's an error. | Oh, dear, $username, something went wrong trying to get this session's data. Try it again later and if the issue persists contact the streamer.|           |
+
+You see there are some $args in the default texts, you can use them in your own custom messages they are parsed as
+follows.
+
+| Argument      | Description                                                     |
+| ------------- | --------------------------------------------------------------- |
+| **$username** | The user that called this command                               |
+| **$total_matches**     | The total number of matches played on the current session |
+| **$won_matches**      | The number of matches won on the current session                       |
+| **$lost_matches**    | The number of matches lost on the current session                        |
