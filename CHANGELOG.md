@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.1.1...v1.2.0) (2021-03-30)
+
+
+### Features
+
+* **api-client:** add getter for match history ([d5648d0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/d5648d02842847157b689cfc94fd2c1697d47969))
+* **session-analyzer:** add class for analysis on a stream session ([7602379](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/76023795842060d52a07d140cf50645364fd31f8))
+* **session-analyzer:** add session-analyzer and session-start commands ([28a24b6](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/28a24b654ac60187e4462b2e68bd189a1c9303db))
+
+
+
+
 ## [1.1.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.1.0...v1.1.1) (2021-03-21)
 
 
