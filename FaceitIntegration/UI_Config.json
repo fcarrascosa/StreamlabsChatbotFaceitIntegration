@@ -86,5 +86,138 @@
     "label": "Error Message",
     "tooltip": "The message that will be sent to chart when using the command and there's an error",
     "group": "Elo Check Command"
+  },
+  "faceit_session_start_command": {
+    "type": "textbox",
+    "value": "!startsession",
+    "label": "Command",
+    "tooltip": "The text that should trigger the Faceit Elo Check command",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_permission": {
+    "type": "dropdown",
+    "value": "moderator",
+    "items": [
+      "everyone",
+      "moderator",
+      "subscriber",
+      "user_specific",
+      "editor"
+    ],
+    "label": "User Permission",
+    "tooltip": "The group of users that can use this command",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_permission_specific": {
+    "type": "textbox",
+    "value": "",
+    "label": "Specific User",
+    "tooltip": "This field should only be filled when User Permission is set to user_specific.",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_cooldown": {
+    "type": "slider",
+    "value": 72000,
+    "min": 1,
+    "max": 86400,
+    "ticks": 1,
+    "label": "Cooldown (in seconds)",
+    "tooltip": "How much time an user has to wait before using this command again",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_message": {
+    "type": "textbox",
+    "value": "$username, a new session started, I'll keep track of the matches played from now on.",
+    "label": "Message",
+    "tooltip": "The message that will be sent to chat when using the command",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_error_message": {
+    "type": "textbox",
+    "value": "Oh, dear, $username, something went wrong trying to get this session's data. Try it again later and if the issue persists contact the streamer.",
+    "label": "Error Message",
+    "tooltip": "The message that will be sent to chart when using the command and there's an error",
+    "group": "Start Session Command"
+  },
+  "faceit_session_start_on_init": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Start on SLCB startup",
+    "tooltip": "When checked, a new session will be created when opening SLCB",
+    "group": "Session Check Command"
+  },
+  "faceit_session_include_all_matches": {
+    "type": "checkbox",
+    "value": false,
+    "label": "Include hub and other custom matches",
+    "tooltip": "When checked, this command will check all matches and not only matchmaking",
+    "group": "Session Check Command"
+  },
+  "faceit_session_command": {
+    "type": "textbox",
+    "value": "!session",
+    "label": "Command",
+    "tooltip": "The text that should trigger the Faceit Session Check command",
+    "group": "Session Check Command"
+  },
+  "faceit_session_default_argument": {
+    "type": "textbox",
+    "value": "",
+    "label": "Your faceit nickname (MANDATORY)",
+    "tooltip": "This is the user the command is going to check when no param is included",
+    "group": "Session Check Command"
+  },
+  "faceit_session_permission": {
+    "type": "dropdown",
+    "value": "everyone",
+    "items": [
+      "everyone",
+      "moderator",
+      "subscriber",
+      "user_specific",
+      "editor"
+    ],
+    "label": "User Permission",
+    "tooltip": "The group of users that can use this command",
+    "group": "Session Check Command"
+  },
+  "faceit_session_permission_specific": {
+    "type": "textbox",
+    "value": "",
+    "label": "Specific User",
+    "tooltip": "This field should only be filled when User Permission is set to user_specific.",
+    "group": "Session Check Command"
+  },
+  "faceit_session_cooldown": {
+    "type": "slider",
+    "value": 30,
+    "min": 1,
+    "max": 300,
+    "ticks": 1,
+    "label": "Cooldown (in seconds)",
+    "tooltip": "How much time an user has to wait before using this command again",
+    "group": "Session Check Command"
+  },
+  "faceit_session_message": {
+    "type": "textbox",
+    "value": "$username, we've played $total_matches games, won $won_matches, lost $lost_matches and this session elo balance is $elo_balance.",
+    "label": "Message",
+    "tooltip": "The message that will be sent to chat when using the command",
+    "group": "Session Check Command"
+  },
+  "faceit_session_error_message": {
+    "type": "textbox",
+    "value": "Oh, dear, $username, something went wrong trying to get this session's data. Try it again later and if the issue persists contact the streamer.",
+    "label": "Error Message",
+    "tooltip": "The message that will be sent to chart when using the command and there's an error",
+    "group": "Session Check Command"
+  },
+  "faceit_session_button_restart": {
+    "type": "button",
+    "label": "Start Session",
+    "tooltip": "Starts a new session",
+    "function": "StartFaceitSession",
+    "wsevent": "",
+    "group": "Session Check Command"
   }
 }

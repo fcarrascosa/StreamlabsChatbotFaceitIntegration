@@ -1,6 +1,5 @@
 import datetime
 
-
 class FaceitSessionAnalyzer:
     def __init__(self, nick_name, get_all=False):
         self.session_init = None
