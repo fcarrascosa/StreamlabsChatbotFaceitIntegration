@@ -1,19 +1,22 @@
 from faceit_api_client import FaceitApiClient
+import json
+import datetime
 
 
 class Command(object):
-    def __init__(self, parent, settings, name, script_name, data):
+    def __init__(self, parent, settings, name, script_name, data, analyzer=None):
         self.parent = parent
         self.settings = settings
         self.name = name.replace('_command', '')
         self.script_name = script_name
-        self.user = data.User
-        self.user_name = data.UserName
+        self.user = data.User if data else None
+        self.user_name = data.UserName if data else None
         self.data = data
+        self.analyzer = analyzer
         return
 
     def get_settings_attribute(self, attribute=''):
-        return self.settings.__getattribute__(self.name + '_' + attribute)
+        return self.settings.__getattribute__(self.name + '_' + attribute) if self.name + '_' + attribute in self.settings.__dict__ else ''
 
     def get_command_name(self):
         return self.get_settings_attribute('command')
@@ -27,7 +30,7 @@ class Command(object):
     def get_cooldown(self):
         return self.get_settings_attribute('cooldown')
 
-    def get_message(self):
+    def get_message(self, ):
         return self.get_settings_attribute('message')
 
     def get_default_argument(self):
@@ -79,7 +82,9 @@ class Command(object):
             self.set_cooldown_for_command()
 
         function_per_command = {
-            self.settings.faceit_elo_command: FaceitApiClient(self.settings.faceit_api_key, self.parent).get_player_elo
+            self.settings.faceit_elo_command: FaceitApiClient(self.settings.faceit_api_key, self.parent).get_player_elo,
+            self.settings.faceit_session_start_command: self.init_session,
+            self.settings.faceit_session_command: self.get_session,
         }
 
         message = self.get_message()
@@ -91,6 +96,29 @@ class Command(object):
             parse_options = {}
             message = self.get_error_message()
 
-        message = self.parse_command_message(message, parse_options)
+        message = self.parse_command_message(message, parse_options if parse_options else {})
         self.parent.SendStreamMessage(message)
+        return
+
+    def get_session(self, *args):
+        match_history = FaceitApiClient(self.settings.faceit_api_key, self.parent).get_match_history(
+            self.settings.faceit_session_default_argument, self.analyzer.session_init)
+        current_elo = FaceitApiClient(self.settings.faceit_api_key, self.parent).get_player_elo(
+            self.settings.faceit_session_default_argument)
+        self.analyzer.set_matches(match_history if len(match_history) else [])
+        return {
+            "total_matches": self.analyzer.count_total_matches(),
+            "won_matches": self.analyzer.count_won_matches(),
+            "lost_matches": self.analyzer.count_lost_matches(),
+            "elo_balance": self.analyzer.get_session_elo(current_elo["elo"])
+        }
+
+    def init_session(self, *args):
+        now = int((datetime.datetime.now() - datetime.datetime(1970,1,1)).total_seconds())
+        api_client = FaceitApiClient(self.settings.faceit_api_key, self.parent)
+        initial_elo = api_client.get_player_elo(self.settings.faceit_session_default_argument)["elo"]
+        initial_matches = api_client.get_match_history(self.settings.faceit_session_default_argument, now)
+        self.analyzer.start_session(initial_elo, initial_matches)
+        self.analyzer.matches = []
+
         return

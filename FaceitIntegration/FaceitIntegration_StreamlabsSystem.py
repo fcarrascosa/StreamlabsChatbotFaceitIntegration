@@ -1,6 +1,7 @@
 import codecs
 import os
 import sys
+import datetime
 import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -9,6 +10,9 @@ import messaging
 from file_system import create_directory
 from script_settings import FaceitIntegrationSettings
 from command import Command
+from faceit_session_analyzer import FaceitSessionAnalyzer
+from faceit_api_client import FaceitApiClient
+
 
 # ---------------------------
 #   Script Information
@@ -29,6 +33,8 @@ SETTINGS = FaceitIntegrationSettings(SETTINGS_FILE)
 ASSETS_DIRECTORY = os.path.join(os.path.dirname(__file__), "assets")
 MESSAGES_DIRECTORY = os.path.join(ASSETS_DIRECTORY, "messages")
 MESSAGE_BOX_YES = 6
+SESSION_ANALYZER = FaceitSessionAnalyzer(SETTINGS.faceit_elo_default_argument,
+                                         SETTINGS.faceit_session_include_all_matches if "faceit_session_include_all_matches" in SETTINGS.__dict__ else False)
 
 
 # ---------------------------
@@ -39,12 +45,15 @@ def Init():
     """ [Required] Initialize Data (Only called on load)
     :return: void
     """
+    should_start_sesstion = SETTINGS.faceit_session_start_on_init if SETTINGS.__dict__.has_key(
+        "faceit_session_start_on_init") else True
 
     create_directory(SETTINGS_DIRECTORY)
-    SETTINGS.save(SETTINGS_FILE, ScriptName, Parent)
     validate_settings()
     if SETTINGS.notification_on_new_version:
         check_new_version()
+    if should_start_sesstion:
+        StartFaceitSession()
     return
 
 
@@ -60,7 +69,7 @@ def Execute(data):
 
         if possible_command in commands.values():
             command_key = commands.keys()[commands.values().index(possible_command)]
-            command = Command(Parent, SETTINGS, command_key, ScriptName, data)
+            command = Command(Parent, SETTINGS, command_key, ScriptName, data, SESSION_ANALYZER)
             command.execute_command()
 
     return
@@ -128,3 +137,12 @@ def check_new_version():
         if download_new_version == MESSAGE_BOX_YES:
             os.system("explorer https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/releases/")
     return
+
+
+# ---------------------------
+#   Miscellaneous Functions
+# ---------------------------
+
+
+def StartFaceitSession():
+    Command(Parent, SETTINGS, '', ScriptName, None, SESSION_ANALYZER).init_session()
