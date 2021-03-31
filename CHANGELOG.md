@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.2.0...v1.2.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **session-analyzer:** fix problem with EPOCH datetime ([1886087](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/1886087e3e0d055ecdbbd7f44603a9bc34faf484))
+
+
+
+
 # [1.2.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.1.1...v1.2.0) (2021-03-30)
 
 
