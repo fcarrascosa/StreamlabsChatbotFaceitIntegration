@@ -1,5 +1,5 @@
 from faceit_api_client import FaceitApiClient
-import json
+import time
 import datetime
 
 
@@ -114,7 +114,7 @@ class Command(object):
         }
 
     def init_session(self, *args):
-        now = int((datetime.datetime.now() - datetime.datetime(1970,1,1)).total_seconds())
+        now = int(time.mktime(datetime.datetime.now().timetuple()))
         api_client = FaceitApiClient(self.settings.faceit_api_key, self.parent)
         initial_elo = api_client.get_player_elo(self.settings.faceit_session_default_argument)["elo"]
         initial_matches = api_client.get_match_history(self.settings.faceit_session_default_argument, now)

@@ -1,7 +1,8 @@
+import time
 import datetime
 
 class FaceitSessionAnalyzer:
-    def __init__(self, nick_name, get_all=False):
+    def __init__(self, nick_name, get_all=False, parent=None):
         self.session_init = None
         self.nick_name = nick_name
         self.get_all = get_all
@@ -10,7 +11,7 @@ class FaceitSessionAnalyzer:
         self.initial_matches = []
 
     def start_session(self, initial_elo, matches):
-        self.session_init = int((datetime.datetime.now() - datetime.datetime(1970, 1, 1)).total_seconds())
+        self.session_init = int(time.mktime(datetime.datetime.now().timetuple()))
         self.initial_elo = initial_elo
 
         matches_to_init = matches
@@ -28,10 +29,14 @@ class FaceitSessionAnalyzer:
         self.matches = matches
 
     def is_won_match(self, match=None):
-        player_faction = [key for key, value in match["teams"].items() if
-                          self.nick_name in [player["nickname"] for player in value["players"]]][0]
+        player_faction = None
         winner_faction = match["results"]["winner"]
-        return True if player_faction == winner_faction else False
+
+        for key, value in match["teams"].items():
+            for player in value["players"]:
+                player_faction = key if player["nickname"] == self.nick_name else player_faction
+
+        return player_faction == winner_faction
 
     def count_won_matches(self):
         value = 0

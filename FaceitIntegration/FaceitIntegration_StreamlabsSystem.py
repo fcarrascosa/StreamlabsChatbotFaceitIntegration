@@ -1,7 +1,6 @@
 import codecs
 import os
 import sys
-import datetime
 import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -11,8 +10,6 @@ from file_system import create_directory
 from script_settings import FaceitIntegrationSettings
 from command import Command
 from faceit_session_analyzer import FaceitSessionAnalyzer
-from faceit_api_client import FaceitApiClient
-
 
 # ---------------------------
 #   Script Information
@@ -33,7 +30,7 @@ SETTINGS = FaceitIntegrationSettings(SETTINGS_FILE)
 ASSETS_DIRECTORY = os.path.join(os.path.dirname(__file__), "assets")
 MESSAGES_DIRECTORY = os.path.join(ASSETS_DIRECTORY, "messages")
 MESSAGE_BOX_YES = 6
-SESSION_ANALYZER = FaceitSessionAnalyzer(SETTINGS.faceit_elo_default_argument,
+SESSION_ANALYZER = FaceitSessionAnalyzer(SETTINGS.faceit_session_default_argument,
                                          SETTINGS.faceit_session_include_all_matches if "faceit_session_include_all_matches" in SETTINGS.__dict__ else False)
 
 
