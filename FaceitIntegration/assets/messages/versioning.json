@@ -1,4 +1,6 @@
 {
+  "log_version_error_title": "FACEIT INTEGRATION - VERSION ERROR",
+  "log_version_error_description": "Could not retrieve Version data.",
   "new_version_header": "FACEIT INTEGRATION - NEW VERSION",
   "new_version_body": "New version {VERSION_NAME} has been released for FaceitIntegration\nPlease check the CHANGELOG and update.\nGo to the downloads page?"
 }
