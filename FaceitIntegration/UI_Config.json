@@ -3,43 +3,51 @@
   "faceit_api_key": {
     "type": "textbox",
     "value": "",
-    "label": "Faceit API Key (Required)",
-    "tooltip": "Your Faceit Application API key",
+    "label": "Faceit Api Key (Required)",
+    "tooltip": "Your Faceit Application API key.",
+    "group": "Base"
+  },
+  "faceit_username": {
+    "type": "textbox",
+    "value": "",
+    "label": "Faceit Nickname (Required)",
+    "tooltip": "Your Faceit user Nickname",
+    "group": "Base"
+  },
+  "overlays_enabled": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Enable overlays",
+    "tooltip": "When checked, Streamlabs Chatbot will send WebSocket events to the overlays of this script",
     "group": "Base"
   },
   "notification_on_new_version": {
     "type": "checkbox",
     "value": true,
     "label": "Notify me on new version",
-    "tooltip": "When checked, on Streamlabs Chatbot startup the script will check for updates and notify you if there is any",
+    "tooltip": "When checked, on Streamlabs Chatbot startup the script will check for updaes and notify you if there is any",
     "group": "Base"
-  },
-  "faceit_cooldown_message": {
-    "type": "textbox",
-    "value": "$username, not too fast! You need to wait $cooldownTimer seconds till you can use $command again",
-    "label": "Cooldown message",
-    "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
-    "group": "Common Messages"
   },
   "faceit_permission_message": {
     "type": "textbox",
     "value": "$username, gotcha! You don't have permission to use $command",
     "label": "Permission Error Message",
     "tooltip": "The message that will be sent to chat when the user of a command does not have permission to use it",
-    "group": "Common Messages"
+    "group": "General Messages"
   },
+  "faceit_cooldown_message": {
+    "type": "textbox",
+    "value": "$username, not too fast! You need to wait $cooldownTimer seconds till you can use $command again",
+    "label": "Cooldown message",
+    "tooltip": "The message that will be sent to chat when the user of a command is on cooldown",
+    "group": "General Messages"
+  },
+
   "faceit_elo_command": {
     "type": "textbox",
     "value": "!elo",
     "label": "Command",
     "tooltip": "The text that should trigger the Faceit Elo Check command",
-    "group": "Elo Check Command"
-  },
-  "faceit_elo_default_argument": {
-    "type": "textbox",
-    "value": "",
-    "label": "Your faceit nickname (MANDATORY)",
-    "tooltip": "This is the user the command is going to check when no param is included",
     "group": "Elo Check Command"
   },
   "faceit_elo_permission": {
@@ -63,17 +71,17 @@
     "tooltip": "This field should only be filled when User Permission is set to user_specific.",
     "group": "Elo Check Command"
   },
-  "faceit_elo_cooldown": {
+  "faceit_elo_user_cooldown": {
     "type": "slider",
     "value": 30,
-    "min": 1,
+    "min": 0,
     "max": 300,
     "ticks": 1,
-    "label": "Cooldown (in seconds)",
+    "label": "User Cooldown (in seconds)",
     "tooltip": "How much time an user has to wait before using this command again",
     "group": "Elo Check Command"
   },
-  "faceit_elo_message": {
+  "faceit_elo_success_message": {
     "type": "textbox",
     "value": "$username, the Faceit ELO for $arg1 is $elo that makes him level $level.",
     "label": "Message",
@@ -87,14 +95,15 @@
     "tooltip": "The message that will be sent to chart when using the command and there's an error",
     "group": "Elo Check Command"
   },
-  "faceit_session_start_command": {
+
+  "faceit_start_session_command": {
     "type": "textbox",
     "value": "!startsession",
     "label": "Command",
-    "tooltip": "The text that should trigger the Faceit Elo Check command",
-    "group": "Start Session Command"
+    "tooltip": "The text that should trigger the Faceit Start Session command",
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_permission": {
+  "faceit_start_session_permission": {
     "type": "dropdown",
     "value": "moderator",
     "items": [
@@ -106,65 +115,45 @@
     ],
     "label": "User Permission",
     "tooltip": "The group of users that can use this command",
-    "group": "Start Session Command"
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_permission_specific": {
+  "faceit_start_session_permission_specific": {
     "type": "textbox",
     "value": "",
     "label": "Specific User",
     "tooltip": "This field should only be filled when User Permission is set to user_specific.",
-    "group": "Start Session Command"
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_cooldown": {
+  "faceit_start_session_global_cooldown": {
     "type": "slider",
-    "value": 72000,
-    "min": 1,
+    "value": 14400,
+    "min": 0,
     "max": 86400,
-    "ticks": 1,
-    "label": "Cooldown (in seconds)",
-    "tooltip": "How much time an user has to wait before using this command again",
-    "group": "Start Session Command"
+    "ticks": 1800,
+    "label": "Global Cooldown (in seconds)",
+    "tooltip": "How much time this command is to be on wait to use it again",
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_message": {
+  "faceit_start_session_success_message": {
     "type": "textbox",
     "value": "$username, a new session started, I'll keep track of the matches played from now on.",
     "label": "Message",
     "tooltip": "The message that will be sent to chat when using the command",
-    "group": "Start Session Command"
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_error_message": {
+  "faceit_start_session_error_message": {
     "type": "textbox",
-    "value": "Oh, dear, $username, something went wrong trying to get this session's data. Try it again later and if the issue persists contact the streamer.",
+    "value": "Oh, dear, $username, something went wrong trying to start a new session.",
     "label": "Error Message",
     "tooltip": "The message that will be sent to chart when using the command and there's an error",
-    "group": "Start Session Command"
+    "group": "Start Faceit Session Command"
   },
-  "faceit_session_start_on_init": {
-    "type": "checkbox",
-    "value": true,
-    "label": "Start on SLCB startup",
-    "tooltip": "When checked, a new session will be created when opening SLCB",
-    "group": "Session Check Command"
-  },
-  "faceit_session_include_all_matches": {
-    "type": "checkbox",
-    "value": false,
-    "label": "Include hub and other custom matches",
-    "tooltip": "When checked, this command will check all matches and not only matchmaking",
-    "group": "Session Check Command"
-  },
+
   "faceit_session_command": {
     "type": "textbox",
     "value": "!session",
     "label": "Command",
     "tooltip": "The text that should trigger the Faceit Session Check command",
-    "group": "Session Check Command"
-  },
-  "faceit_session_default_argument": {
-    "type": "textbox",
-    "value": "",
-    "label": "Your faceit nickname (MANDATORY)",
-    "tooltip": "This is the user the command is going to check when no param is included",
     "group": "Session Check Command"
   },
   "faceit_session_permission": {
@@ -188,19 +177,29 @@
     "tooltip": "This field should only be filled when User Permission is set to user_specific.",
     "group": "Session Check Command"
   },
-  "faceit_session_cooldown": {
+  "faceit_session_global_cooldown": {
     "type": "slider",
-    "value": 30,
-    "min": 1,
+    "value": 0,
+    "min": 0,
     "max": 300,
     "ticks": 1,
-    "label": "Cooldown (in seconds)",
+    "label": "Global Cooldown (in seconds)",
+    "tooltip": "How much time this command is to be on wait to use it again",
+    "group": "Session Check Command"
+  },
+  "faceit_session_user_cooldown": {
+    "type": "slider",
+    "value": 30,
+    "min": 0,
+    "max": 300,
+    "ticks": 1,
+    "label": "User Cooldown (in seconds)",
     "tooltip": "How much time an user has to wait before using this command again",
     "group": "Session Check Command"
   },
-  "faceit_session_message": {
+  "faceit_session_success_message": {
     "type": "textbox",
-    "value": "$username, we've played $total_matches games, won $won_matches, lost $lost_matches and this session elo balance is $elo_balance.",
+    "value": "$username, we've played $total_matches in total, won $won_matches, lost $lost_matches and this session elo balance is $elo_balance.",
     "label": "Message",
     "tooltip": "The message that will be sent to chat when using the command",
     "group": "Session Check Command"
@@ -212,12 +211,29 @@
     "tooltip": "The message that will be sent to chart when using the command and there's an error",
     "group": "Session Check Command"
   },
-  "faceit_session_button_restart": {
+
+  "button_start_session": {
     "type": "button",
-    "label": "Start Session",
-    "tooltip": "Starts a new session",
-    "function": "StartFaceitSession",
+    "label": "Start New Session",
+    "tooltip": "Start tracking CSGO matches",
+    "function": "init_analyzer_session",
     "wsevent": "",
-    "group": "Session Check Command"
+    "group": "Start Faceit Session Command"
+  },
+  "button_donate": {
+    "type": "button",
+    "label": "Donate",
+    "tooltip": "I do this for free, maybe consider buying me a cup of coffee?",
+    "function": "open_donation",
+    "wsevent": "",
+    "group": ""
+  },
+  "button_set_defaults": {
+    "type": "button",
+    "label": "Restore Default settings",
+    "tooltip": "Reset settings to default values.\nReload Scripts afterwards to see the changes in the user interface",
+    "function": "reset_settings",
+    "wsevent": "EVENT_FCARRASCOSA_FACEIT_RESET_SETTINGS",
+    "group": ""
   }
 }
