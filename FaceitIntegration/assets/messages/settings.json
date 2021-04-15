@@ -1,0 +1,6 @@
+{
+  "reset_settings_confirm_header": "FACEIT INTEGRATION - RESET SETTINGS",
+  "reset_settings_confirm_body": "Are you really sure that you want to reset your settings to their default values?\nThis action cannot be undone.",
+  "reset_settings_success_header": "FACEIT INTEGRATION - RESET SETTINGS SUCCESSFUL",
+  "reset_settings_success_body": "Your settings have been reset to their default values.\nPlease, reload the scritps in order to see the changes."
+}
