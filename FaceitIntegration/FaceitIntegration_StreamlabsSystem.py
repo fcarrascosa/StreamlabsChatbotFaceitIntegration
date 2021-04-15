@@ -101,13 +101,22 @@ def reset_settings():
 def check_version():
     releases_url = 'https://api.github.com/repos/fcarrascosa/StreamlabsChatbotFaceitIntegration/releases/latest'
     current_version = StrictVersion(Version)
-    latest_version_tag = make_get_request(Parent, releases_url)['tag_name'].replace('v', '')
-    latest_version = StrictVersion(latest_version_tag)
 
-    if latest_version > current_version:
-        new_version_body = get_message('versioning', 'new_version_body').replace('{VERSION_NAME}', latest_version_tag)
-        if show_confirm_dialog(get_message('versioning', 'new_version_header'), new_version_body):
-            os.system("explorer https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/releases/")
+    try:
+        latest_version_tag = make_get_request(Parent, releases_url)['tag_name'].replace('v', '')
+        latest_version = StrictVersion(latest_version_tag)
+
+        if latest_version > current_version:
+            new_version_body = get_message('versioning', 'new_version_body').replace('{VERSION_NAME}',
+                                                                                     latest_version_tag)
+            if show_confirm_dialog(get_message('versioning', 'new_version_header'), new_version_body):
+                os.system("explorer https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/releases/")
+
+    except:
+        Parent.Log(
+            get_message('versioning', 'log_version_error_title'),
+            get_message('versioning', 'log_version_error_description')
+        )
 
 
 def open_donation():
