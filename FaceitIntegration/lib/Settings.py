@@ -64,3 +64,37 @@ class Settings:
             return_value = return_value if return_value and self.__dict__[key] else False
 
         return return_value
+
+    def get_commands_properties(self, name):
+        return_value = dict()
+        substring = '_' + name
+
+        for key, value in self.__dict__.items():
+            if key.endswith(substring):
+                key_name = key.replace(substring, '')
+                return_value[key_name] = value
+
+        return return_value
+
+    def get_commands(self):
+        return self.get_commands_properties('command')
+
+    def get_commands_permission(self):
+        return self.get_commands_properties('permission')
+
+    def get_commands_permission_specific(self):
+        return self.get_commands_properties('permission_specific')
+
+    def get_commands_global_cooldown(self):
+        return self.get_commands_properties('global_cooldown')
+
+    def get_commands_user_cooldown(self):
+        return self.get_commands_properties('user_cooldown')
+
+    def get_commands_success_message(self):
+        return self.get_commands_properties('success_message')
+
+    def get_commands_error_message(self):
+        return self.get_commands_properties('error_message')
+
+
