@@ -1,12 +1,16 @@
 import os
 import sys
-
 from distutils.version import StrictVersion
 
 sys.path.append(os.path.dirname(__file__))
 
+from lib.Command import Command
+from lib.errors.CooldownError import CooldownError
+from lib.errors.ExecutionError import ExecutionError
+from lib.errors.PermissionError import PermissionError
 from lib.Settings import Settings
-from lib.utils.messaging import show_confirm_dialog, get_message, show_dialog
+from lib.utils.execute import should_check_command
+from lib.utils.messaging import show_confirm_dialog, get_message, show_dialog, build_message
 from lib.utils.requests import make_get_request
 
 # ---------------------------
@@ -52,6 +56,51 @@ def Execute(data):
     :param data: the Data object provided by SLCB
     :return: void
     """
+    if should_check_command(data):
+        global SETTINGS
+        commands_triggers = SETTINGS.get_commands()
+        command_candidate = data.GetParam(0)
+
+        if command_candidate in commands_triggers.values():
+            command_key = commands_triggers.keys()[commands_triggers.values().index(command_candidate)]
+
+            commands_global_cooldown = SETTINGS.get_commands_global_cooldown()
+            command_global_cooldown = commands_global_cooldown[command_key] if command_key in commands_global_cooldown.keys() else 0
+            commands_user_cooldown = SETTINGS.get_commands_user_cooldown()
+            command_user_cooldown = commands_user_cooldown[command_key] if command_key in commands_user_cooldown.keys() else 0
+
+            command = Command(
+                parent=Parent,
+                script_name=ScriptName,
+                command_key=command_key,
+                permission=SETTINGS.get_commands_permission()[command_key],
+                permission_specific=SETTINGS.get_commands_permission_specific()[command_key],
+                global_cooldown=command_global_cooldown,
+                user_cooldown=command_user_cooldown,
+                user=data.User,
+                user_name=data.UserName,
+            )
+
+            params = {
+                'command': command_candidate,
+                'username': data.UserName
+            }
+
+            try:
+                command_execution = command.execute()
+                params.update(command_execution)
+                command.set_cooldown()
+                message = SETTINGS.get_commands_success_message()[command_key]
+            except CooldownError:
+                message = SETTINGS.faceit_cooldown_message.replace('$username', data.UserName)
+                params.update({'cooldownTimer': str(command.get_cooldown_duration())})
+            except PermissionError:
+                message = SETTINGS.faceit_permission_message
+            except ExecutionError:
+                message = SETTINGS.get_commands_error_message()[command_key]
+            finally:
+                if 'message' in locals():
+                    Parent.SendStreamMessage(build_message(message, params))
 
     return
 
@@ -60,7 +109,6 @@ def Tick():
     """ [Required] Tick method (Gets called during every iteration even when there is no incoming data)
     :return: void
     """
-
     return
 
 
@@ -74,6 +122,23 @@ def ReloadSettings(json_data):
 
     SETTINGS.load(json_data)
     validate_settings()
+    return
+
+
+def Unload():
+    """ [Optional] Unload (Called when a user reloads their scripts or closes the bot / cleanup stuff)
+
+    :return: Void
+    """
+    return
+
+
+def ScriptToggled(state):
+    """ [Optional] ScriptToggled (Notifies you when a user disables your script or enables it)
+    :param state:
+    :return: void
+    """
+
     return
 
 
