@@ -4,6 +4,7 @@ from distutils.version import StrictVersion
 
 sys.path.append(os.path.dirname(__file__))
 
+from lib.actions.elo import get_player_info
 from lib.Command import Command
 from lib.errors.CooldownError import CooldownError
 from lib.errors.ExecutionError import ExecutionError
@@ -37,7 +38,7 @@ SETTINGS_FILE = os.path.join(SETTINGS_DIRECTORY, "settings.json")
 
 def Init():
     """ [Required] Initialize Data (Only called on load)
-    :return: void
+    :return: None
     """
 
     if not os.path.exists(SETTINGS_DIRECTORY):
@@ -54,7 +55,7 @@ def Init():
 def Execute(data):
     """ [Required] Execute Data / Process messages
     :param data: the Data object provided by SLCB
-    :return: void
+    :return: None
     """
     if should_check_command(data):
         global SETTINGS
@@ -83,12 +84,22 @@ def Execute(data):
 
             params = {
                 'command': command_candidate,
-                'username': data.UserName
+                'username': data.UserName,
+                'player': data.GetParam(1) or SETTINGS.faceit_username
             }
 
             try:
-                command_execution = command.execute()
+                arguments = {
+                    'default_player': SETTINGS.faceit_username,
+                    'api_key': SETTINGS.faceit_api_key,
+                    'argument': data.GetParam(1),
+                }
+                command_execution = command.execute(get_player_info, arguments)
                 params.update(command_execution)
+
+                for key, value in params.items():
+                    Parent.Log(key, str(value))
+
                 command.set_cooldown()
                 message = SETTINGS.get_commands_success_message()[command_key]
             except CooldownError:
@@ -102,44 +113,37 @@ def Execute(data):
                 if 'message' in locals():
                     Parent.SendStreamMessage(build_message(message, params))
 
-    return
-
 
 def Tick():
     """ [Required] Tick method (Gets called during every iteration even when there is no incoming data)
-    :return: void
+    :return: None
     """
-    return
 
 
 def ReloadSettings(json_data):
     """[Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
 
     :param json_data: the settings object
-    :return: void
+    :return: None
     """
     global SETTINGS
 
     SETTINGS.load(json_data)
     validate_settings()
-    return
 
 
 def Unload():
     """ [Optional] Unload (Called when a user reloads their scripts or closes the bot / cleanup stuff)
 
-    :return: Void
+    :return: None
     """
-    return
 
 
 def ScriptToggled(state):
     """ [Optional] ScriptToggled (Notifies you when a user disables your script or enables it)
     :param state:
-    :return: void
+    :return: None
     """
-
-    return
 
 
 # ---------------------------

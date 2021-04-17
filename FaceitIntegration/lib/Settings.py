@@ -96,5 +96,3 @@ class Settings:
 
     def get_commands_error_message(self):
         return self.get_commands_properties('error_message')
-
-

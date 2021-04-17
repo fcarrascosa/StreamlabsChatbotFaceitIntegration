@@ -14,8 +14,7 @@ class Command:
                  user_cooldown,
                  user,
                  user_name,
-                 execute_function=None,
-                 fn_arguments={}):
+                 ):
         self.parent = parent
         self.script_name = script_name
         self.command_key = command_key
@@ -25,8 +24,6 @@ class Command:
         self.user = user
         self.user_name = user_name
         self.user_cooldown = user_cooldown
-        self.fn = execute_function
-        self.fn_arguments = fn_arguments
 
     def user_has_permission(self):
         return self.parent.HasPermission(self.user, self.permission, self.permission_specific)
@@ -62,15 +59,13 @@ class Command:
     def set_user_cooldown(self):
         self.parent.AddUserCooldown(self.script_name, self.command_key, self.user, int(self.user_cooldown))
 
-    def execute(self):
+    def execute(self, fn, arguments):
         if not self.user_has_permission():
             raise PermissionError()
         if self.is_on_cooldown():
             raise CooldownError()
 
         try:
-            return self.fn(self.parent, self.user_name, self.fn_arguments) if self.fn else {
-                'key': 'value'
-            }
+            return fn(self.parent, arguments)
         except:
             raise ExecutionError()
