@@ -1,0 +1,38 @@
+#matchesPlayed, #eloBalance, #matchesWon, #matchesLost {
+  color: #fff;
+  text-align: center;
+  .label {
+    text-transform: uppercase;
+  }
+}
+
+#matchesPlayed, #eloBalance {
+  display: flex;
+  flex-direction: column-reverse;
+  .label {
+    font-size: 1.125em;
+  }
+  .value {
+    font-size: 3.125em;
+  }
+}
+
+#matchesWon, #matchesLost {
+  display: flex;
+  flex-direction: column;
+  .label {
+    font-size: 1em;
+  }
+
+  .value {
+    font-size: 2.1875em;
+  }
+}
+
+#matchesWon {
+  //-webkit-text-stroke-color: #3ca67f;
+}
+
+#matchesLost {
+  //-webkit-text-stroke-color: #a6503c;
+}
