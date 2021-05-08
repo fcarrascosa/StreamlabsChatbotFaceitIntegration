@@ -83,14 +83,14 @@
   },
   "faceit_elo_success_message": {
     "type": "textbox",
-    "value": "$username, the Faceit ELO for $arg1 is $elo that makes him level $level.",
+    "value": "$username, the Faceit ELO for $player is $elo that makes him level $level.",
     "label": "Message",
     "tooltip": "The message that will be sent to chat when using the command",
     "group": "Elo Check Command"
   },
   "faceit_elo_error_message": {
     "type": "textbox",
-    "value": "Nice try, $username, but $arg1's ELO is under a rock, 'cause I can't find it.",
+    "value": "Nice try, $username, but $player's ELO is under a rock, 'cause I can't find it.",
     "label": "Error Message",
     "tooltip": "The message that will be sent to chart when using the command and there's an error",
     "group": "Elo Check Command"
@@ -156,6 +156,13 @@
     "tooltip": "The text that should trigger the Faceit Session Check command",
     "group": "Session Check Command"
   },
+  "faceit_session_include_all_matches": {
+    "type": "checkbox",
+    "value": false,
+    "label": "Include hub and other custom matches",
+    "tooltip": "When checked, this command will check all matches and not only matchmaking",
+    "group": "Session Check Command"
+  },
   "faceit_session_permission": {
     "type": "dropdown",
     "value": "everyone",
@@ -219,6 +226,14 @@
     "function": "init_analyzer_session",
     "wsevent": "",
     "group": "Start Faceit Session Command"
+  },
+  "button_open_docs": {
+    "type": "button",
+    "label": "Go to Docs",
+    "tooltip": "Go to the documentation",
+    "function": "open_docs",
+    "wsevent": "",
+    "group": ""
   },
   "button_donate": {
     "type": "button",
