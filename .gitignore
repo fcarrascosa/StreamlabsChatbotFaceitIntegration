@@ -2,3 +2,7 @@ FaceitIntegration/overlays/**/node_modules
 FaceitIntegration/settings/
 FaceitIntegration/API_Key.js
 .idea
+/FaceitIntegration/overlays/session/scss/index.scss
+/FaceitIntegration/overlays/session/scss/modules/_animation.scss
+/FaceitIntegration/overlays/session/scss/modules/_elements.scss
+/FaceitIntegration/overlays/session/scss/util/_font.scss
