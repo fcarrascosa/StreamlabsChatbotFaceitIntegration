@@ -1,15 +1,18 @@
 import os
 import sys
 from distutils.version import StrictVersion
+import time
+from datetime import datetime
 
 sys.path.append(os.path.dirname(__file__))
 
-from lib.actions.elo import get_player_info
+from lib.actions.session import init_session, get_session_analysis, get_session_analysis_deprecated
 from lib.Command import Command
 from lib.errors.CooldownError import CooldownError
 from lib.errors.ExecutionError import ExecutionError
 from lib.errors.PermissionError import PermissionError
 from lib.Settings import Settings
+from lib.utils.commands import FUNCTION_PER_COMMAND
 from lib.utils.execute import should_check_command
 from lib.utils.messaging import show_confirm_dialog, get_message, show_dialog, build_message
 from lib.utils.requests import make_get_request
@@ -30,6 +33,8 @@ Version = "1.2.1"
 global SETTINGS
 SETTINGS_DIRECTORY = os.path.join(os.path.dirname(__file__), "settings")
 SETTINGS_FILE = os.path.join(SETTINGS_DIRECTORY, "settings.json")
+global LAST_TIME_CHECKED
+LAST_TIME_CHECKED = int(time.mktime(datetime.now().timetuple()))
 
 
 # ---------------------------
@@ -66,9 +71,11 @@ def Execute(data):
             command_key = commands_triggers.keys()[commands_triggers.values().index(command_candidate)]
 
             commands_global_cooldown = SETTINGS.get_commands_global_cooldown()
-            command_global_cooldown = commands_global_cooldown[command_key] if command_key in commands_global_cooldown.keys() else 0
+            command_global_cooldown = commands_global_cooldown[
+                command_key] if command_key in commands_global_cooldown.keys() else 0
             commands_user_cooldown = SETTINGS.get_commands_user_cooldown()
-            command_user_cooldown = commands_user_cooldown[command_key] if command_key in commands_user_cooldown.keys() else 0
+            command_user_cooldown = commands_user_cooldown[
+                command_key] if command_key in commands_user_cooldown.keys() else 0
 
             command = Command(
                 parent=Parent,
@@ -92,13 +99,13 @@ def Execute(data):
                 arguments = {
                     'default_player': SETTINGS.faceit_username,
                     'api_key': SETTINGS.faceit_api_key,
+                    'overlays_enabled': SETTINGS.overlays_enabled,
                     'argument': data.GetParam(1),
                 }
-                command_execution = command.execute(get_player_info, arguments)
-                params.update(command_execution)
+                command_execution = command.execute(FUNCTION_PER_COMMAND[command_key], arguments)
 
-                for key, value in params.items():
-                    Parent.Log(key, str(value))
+                if command_execution:
+                    params.update(command_execution)
 
                 command.set_cooldown()
                 message = SETTINGS.get_commands_success_message()[command_key]
@@ -116,8 +123,19 @@ def Execute(data):
 
 def Tick():
     """ [Required] Tick method (Gets called during every iteration even when there is no incoming data)
+
     :return: None
     """
+    if SETTINGS.overlays_enabled:
+        current_time = int(time.mktime(datetime.now().timetuple()))
+        global LAST_TIME_CHECKED
+        if (current_time != LAST_TIME_CHECKED) and (current_time % 5 == 0):
+            LAST_TIME_CHECKED = current_time
+            get_analyzer_session(Parent, {
+                'default_player': SETTINGS.faceit_username,
+                'api_key': SETTINGS.faceit_api_key,
+                'overlays_enabled': SETTINGS.overlays_enabled
+            })
 
 
 def ReloadSettings(json_data):
@@ -137,7 +155,6 @@ def Unload():
 
     :return: None
     """
-
 
 def ScriptToggled(state):
     """ [Optional] ScriptToggled (Notifies you when a user disables your script or enables it)
@@ -190,3 +207,28 @@ def check_version():
 
 def open_donation():
     os.system("explorer https://ko-fi.com/fcarrascosa")
+
+
+def open_docs():
+    os.system("explorer https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/wiki")
+
+
+# ---------------------------
+#   Session Functions
+# ---------------------------
+
+def init_analyzer_session():
+    arguments = {
+        'default_player': SETTINGS.faceit_username,
+        'api_key': SETTINGS.faceit_api_key,
+        'overlays_enabled': SETTINGS.overlays_enabled
+    }
+    init_session(Parent, arguments)
+
+    if SETTINGS.overlays_enabled:
+        get_analyzer_session(arguments)
+
+
+def get_analyzer_session(parent, options):
+    # TODO: Replace this with get_session_analysis when FACEIT API gets FIXED
+    get_session_analysis_deprecated(parent, options)
