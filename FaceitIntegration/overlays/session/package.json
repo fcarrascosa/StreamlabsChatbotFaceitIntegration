@@ -1,0 +1,15 @@
+{
+  "name": "overlays",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "scss": "node-sass scss -o css",
+    "scss:watch": "node-sass --watch --recursive scss --output css --source-map true"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

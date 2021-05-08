@@ -1,0 +1,23 @@
+body {
+  overflow: hidden;
+}
+
+main {
+  box-sizing: border-box;
+  padding: .5em;
+  width: 100%;
+}
+
+.container {
+  background: rgba(0,0,0, .4);
+  margin: .5em 0;
+  padding: 2.5em 1.25em;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 30% 20% 20% 30%;
+  #matchesWon, #matchesLost {
+    .label, .value {
+      padding-top: .4em
+    }
+  }
+}
