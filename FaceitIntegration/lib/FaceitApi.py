@@ -32,4 +32,4 @@ def get_player_matches(parent, api_key, player_id, matches_from=None, matches_to
     endpoint = FACEIT_API_ENDPOINTS['players_matches'].replace(':player_id:', player_id)
     request_url = FACEIT_API_BASE_URL + endpoint + generate_query_string(params)
 
-    return make_get_request(parent, request_url, api_key)["items"]
+    return make_get_request(parent, request_url, api_key)
