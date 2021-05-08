@@ -1,2 +1,4 @@
+FaceitIntegration/overlays/**/node_modules
 FaceitIntegration/settings/
+FaceitIntegration/API_Key.js
 .idea

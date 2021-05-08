@@ -68,7 +68,8 @@ jobs:
           body: ${{ steps.semantic_version.outputs.changelog }}
       - name: Generate release assets
         run: |
-          zip -r faceit-integration-${{ steps.semantic_version.outputs.new_version }}.zip README.md FaceitIntegration
+          zip -r faceit-integration-${{ steps.semantic_version.outputs.new_version }}.zip README.md FaceitIntegration -x "./**/node_modules/*" "./**/scss/*" "./**/package.json" "./**/package-lock.json"
+
       - name: Upload release artifacts
         uses: actions/upload-release-asset@v1
         env:
