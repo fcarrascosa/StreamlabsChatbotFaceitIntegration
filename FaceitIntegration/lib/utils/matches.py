@@ -11,3 +11,7 @@ def is_won_match(player_id, match):
 
 def get_match_id(match):
     return match['match_id']
+
+
+def is_matchmaking(match):
+    return match["competition_type"] == "matchmaking"
