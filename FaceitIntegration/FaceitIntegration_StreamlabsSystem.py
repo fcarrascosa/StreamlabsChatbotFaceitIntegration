@@ -101,6 +101,7 @@ def Execute(data):
                     'api_key': SETTINGS.faceit_api_key,
                     'overlays_enabled': SETTINGS.overlays_enabled,
                     'argument': data.GetParam(1),
+                    'include_all_matches': SETTINGS.faceit_session_include_all_matches,
                 }
                 command_execution = command.execute(FUNCTION_PER_COMMAND[command_key], arguments)
 
@@ -134,7 +135,8 @@ def Tick():
             get_analyzer_session(Parent, {
                 'default_player': SETTINGS.faceit_username,
                 'api_key': SETTINGS.faceit_api_key,
-                'overlays_enabled': SETTINGS.overlays_enabled
+                'overlays_enabled': SETTINGS.overlays_enabled,
+                'include_all_matches': SETTINGS.faceit_session_include_all_matches,
             })
 
 

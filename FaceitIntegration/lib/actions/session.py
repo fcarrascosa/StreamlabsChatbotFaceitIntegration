@@ -4,7 +4,7 @@ import os
 import time
 from datetime import datetime
 
-from ..utils.matches import is_won_match, get_match_id
+from ..utils.matches import is_won_match, get_match_id, is_matchmaking
 from ..FaceitApi import get_player_matches
 from .elo import get_player_info
 
@@ -46,9 +46,11 @@ def get_session_analysis(parent, arguments):
     initial_date = initial_data['init']
     initial_elo = initial_data['elo']
     player_id = initial_data['player_id']
+    get_all = arguments['include_all_matches']
     current_elo = get_player_info(parent, arguments)['elo']
 
-    matches = get_player_matches(parent, api_key, player_id, matches_from=initial_date)["items"]
+    matches = [match for match in get_player_matches(parent, api_key, player_id, matches_from=initial_date)["items"] if
+               (get_all or is_matchmaking(match))]
     won_matches = 0
     total_matches = len(matches)
 
@@ -78,6 +80,7 @@ def set_initial_matches_deprecated(parent, api_key, player_id):
 # TODO: Remove this when FACEIT API gets FIXED
 def get_session_analysis_deprecated(parent, arguments):
     api_key = arguments['api_key']
+    get_all = arguments['include_all_matches']
     initial_data = get_session_initial_data()
     initial_elo = initial_data['elo']
     initial_matches = initial_data['initial_matches']
@@ -89,7 +92,7 @@ def get_session_analysis_deprecated(parent, arguments):
     won_matches = 0
 
     for match in matches:
-        if match['match_id'] not in initial_matches:
+        if match['match_id'] not in initial_matches and (get_all or is_matchmaking(match)):
             matches_to_analyze.append(match)
 
     total_matches = len(matches_to_analyze)
