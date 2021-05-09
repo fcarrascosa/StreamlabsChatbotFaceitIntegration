@@ -25,7 +25,7 @@ ScriptName = "FaceitIntegration"
 Website = "https://fcarrascosa.es"
 Description = "A simple script to integrate Streamlabs Chatbot with FaceIT Api"
 Creator = "Fernando Carrascosa"
-Version = "1.2.1"
+Version = "2.0.0"
 
 # ---------------------------
 #   Global Variables

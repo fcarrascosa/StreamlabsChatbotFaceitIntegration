@@ -1,3 +1,31 @@
+# [2.0.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.2.1...v2.0.0) (2021-05-09)
+
+
+### Features
+
+* **actions:** better management of default player in elo check ([1b23b00](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/1b23b004fafdbc0256c57df326a99b5300273759))
+* **check_version:** improve error managing when github api request fails ([06845dd](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/06845dd6d531f61b0ad10f0de5a0db974cd4a26a))
+* **commands:** add command execution library ([c1e6ad9](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/c1e6ad95672a0325ab360e70a65f81c6bfc23c04))
+* **commands:** improve commands execution and add custom error handling ([1517a06](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/1517a065e22437e24b9fd2d7f84a98325a915543))
+* **commands:** refactor of elo command ([b849f22](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/b849f226f67d42112f6a0118c52b5bbe684846c5))
+* **FaceitApi:** return whole response for matches endpoint ([8f379bf](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/8f379bf2c6b4cfe556f6b9cab06a9e1f89860172))
+* **overlays:** include session overlay with a couple of themes ([1761d2f](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/1761d2fade256110666650a64549bb2e80efe081))
+* **script:** implement new functions for commands, add timers for overlays, add new settings ([ee032b4](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/ee032b496c026776423bd46040d3bd26d641f5d9))
+* **session:** add new session management and legacy functions ([597747f](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/597747f644474005a00b55caddb0888acd202dfd))
+* **session:** enable exclusion of hub matches for session command ([05b0155](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/05b0155efe09af72aae2d69b73a485771fc446de))
+* **ui-config:** add new settings options for commands ([9db749d](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/9db749ddd7afa08bf2ca216ce33f527017cc3444))
+* **utils:** add matches analysis library ([01978c2](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/01978c23df26ff10ddf6d61205fffc6efd1a90ef))
+
+
+### BREAKING CHANGES
+
+* **commands:** elo command does not parse  anymore, instead it uses 
+* **commands:** there is no default argument for elo comand anymore, now it takes it from faceit_username setting
+* **overlays:** New major feature. OVERLAYS! Check the docs on how to use them
+
+
+
+
 ## [1.2.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.2.0...v1.2.1) (2021-03-31)
 
 
