@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-title: "FEATURE [DATE]: [SHORT_DESCRIPTION]"
+title: "FEATURE - [DATE]: [SHORT_DESCRIPTION]"
 labels: feature request
 assignees: ''
 ---
@@ -9,7 +9,7 @@ assignees: ''
 
 - [Search for duplicate or closed issues](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/issues?q=is%3Aissue+label%3A%22feature+request%22)
 
-Feature Requests reports must include:
+Feature Requests must include:
 
 - A detailed description, preferably in the form of an User Story.
 
