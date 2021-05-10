@@ -1,5 +1,6 @@
 ---
 name: Bug Report
+about: Inform about a bug in the script
 title: "BUG - [DATE]: [SHORT_DESCRIPTION]"
 labels: bug
 assignees: ''

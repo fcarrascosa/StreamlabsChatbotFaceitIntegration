@@ -1,5 +1,6 @@
 ---
 name: Feature Request
+about: Request a feature you consider useful
 title: "FEATURE - [DATE]: [SHORT_DESCRIPTION]"
 labels: feature request
 assignees: ''
