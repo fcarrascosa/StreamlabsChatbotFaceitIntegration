@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-title: "[DATE]: [SHORT_DESCRIPTION]"
+title: "BUG - [DATE]: [SHORT_DESCRIPTION]"
 labels: bug
 assignees: ''
 ---
