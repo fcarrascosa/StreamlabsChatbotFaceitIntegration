@@ -103,6 +103,13 @@
     "tooltip": "The text that should trigger the Faceit Start Session command",
     "group": "Start Faceit Session Command"
   },
+  "faceit_start_session_start_on_load": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Start session on SLCB startup",
+    "tooltip": "When checked, a session will be automatically started on SLCB startup",
+    "group": "Start Faceit Session Command"
+  },
   "faceit_start_session_permission": {
     "type": "dropdown",
     "value": "moderator",
