@@ -53,6 +53,9 @@ def Init():
     SETTINGS = Settings(Parent, SETTINGS_FILE)
     validate_settings()
 
+    if SETTINGS.faceit_start_session_start_on_load:
+        init_analyzer_session()
+
     if SETTINGS.notification_on_new_version:
         check_version()
 
@@ -223,12 +226,13 @@ def init_analyzer_session():
     arguments = {
         'default_player': SETTINGS.faceit_username,
         'api_key': SETTINGS.faceit_api_key,
-        'overlays_enabled': SETTINGS.overlays_enabled
+        'overlays_enabled': SETTINGS.overlays_enabled,
+        'include_all_matches': SETTINGS.faceit_session_include_all_matches
     }
     init_session(Parent, arguments)
 
     if SETTINGS.overlays_enabled:
-        get_analyzer_session(arguments)
+        get_analyzer_session(Parent, arguments)
 
 
 def get_analyzer_session(parent, options):
