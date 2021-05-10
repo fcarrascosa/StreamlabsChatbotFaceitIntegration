@@ -23,6 +23,7 @@ KEYS_TO_EXCLUDE = [
 
 class Settings:
     def __init__(self, parent, settings_file=None):
+        self.get_default_values()
         if settings_file and os.path.isfile(settings_file):
             with codecs.open(settings_file, encoding='utf-8-sig', mode='r') as f:
                 self.__dict__.update(**json.load(f, encoding='utf-8-sig'))
@@ -32,14 +33,7 @@ class Settings:
         self.parent = parent
 
     def reset(self, settings_file):
-        ui_config_dir = os.path.join(os.path.dirname(__file__), '..')
-        ui_config_file = os.path.join(ui_config_dir, 'UI_Config.json')
-
-        with codecs.open(ui_config_file, encoding="utf-8-sig", mode='r') as f:
-            settings_object = json.load(f, encoding='utf-8-sig')
-            for key in settings_object:
-                if key not in NON_PROPERTY_KEYS and 'value' in settings_object[key].keys():
-                    self.__dict__[key] = settings_object[key]['value']
+        self.get_default_values()
         self.save(settings_file)
 
     def save(self, settings_file):
@@ -64,6 +58,16 @@ class Settings:
             return_value = return_value if return_value and self.__dict__[key] else False
 
         return return_value
+
+    def get_default_values(self):
+        ui_config_dir = os.path.join(os.path.dirname(__file__), '..')
+        ui_config_file = os.path.join(ui_config_dir, 'UI_Config.json')
+
+        with codecs.open(ui_config_file, encoding="utf-8-sig", mode='r') as f:
+            settings_object = json.load(f, encoding='utf-8-sig')
+            for key in settings_object:
+                if key not in NON_PROPERTY_KEYS and 'value' in settings_object[key].keys():
+                    self.__dict__[key] = settings_object[key]['value']
 
     def get_commands_properties(self, name):
         return_value = dict()
