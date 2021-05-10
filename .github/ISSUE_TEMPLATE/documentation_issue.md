@@ -1,5 +1,6 @@
 ---
 name: Documentation Error
+about: Inform about n error in the docs or the wiki
 title: "DOCS - [DATE]: [SHORT_DESCRIPTION]"
 labels: docs
 assignees: ''
