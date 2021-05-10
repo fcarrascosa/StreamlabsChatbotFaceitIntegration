@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v2.0.0...v2.1.0) (2021-05-10)
+
+
+### Bug Fixes
+
+* **settings:** settings now take default values for non-saved properties ([#20](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/issues/20)) ([ab4cd7a](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/ab4cd7a9ed6a8b06d7a03b6d8d77605cb225f577))
+
+
+### Features
+
+* **start-session:** add option to autostart a new session when SLCB is opened ([#21](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/issues/21)) ([282ac11](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/282ac1146c6ac62f93e2470a74f0bc713731cf56))
+
+
+
+
 # [2.0.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v1.2.1...v2.0.0) (2021-05-09)
 
 
