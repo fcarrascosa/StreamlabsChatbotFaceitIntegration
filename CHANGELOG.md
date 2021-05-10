@@ -1,3 +1,13 @@
+## [2.1.1](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v2.1.0...v2.1.1) (2021-05-10)
+
+
+### Bug Fixes
+
+* **overlay:** re-connect socket when it has been closed ([e95ac69](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/commit/e95ac693367ad10a0a3e28e832577fdf659f3e6c))
+
+
+
+
 # [2.1.0](https://github.com/fcarrascosa/StreamlabsChatbotFaceitIntegration/compare/v2.0.0...v2.1.0) (2021-05-10)
 
 
