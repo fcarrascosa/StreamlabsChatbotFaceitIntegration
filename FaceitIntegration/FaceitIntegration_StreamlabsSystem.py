@@ -6,6 +6,7 @@ from datetime import datetime
 
 sys.path.append(os.path.dirname(__file__))
 
+from lib.actions.elo import get_player_elo_overlay
 from lib.actions.session import init_session, get_session_analysis, get_session_analysis_deprecated
 from lib.Command import Command
 from lib.errors.CooldownError import CooldownError
@@ -135,12 +136,16 @@ def Tick():
         global LAST_TIME_CHECKED
         if (current_time != LAST_TIME_CHECKED) and (current_time % 5 == 0):
             LAST_TIME_CHECKED = current_time
-            get_analyzer_session(Parent, {
+            params = {
                 'default_player': SETTINGS.faceit_username,
                 'api_key': SETTINGS.faceit_api_key,
                 'overlays_enabled': SETTINGS.overlays_enabled,
                 'include_all_matches': SETTINGS.faceit_session_include_all_matches,
-            })
+            }
+
+            get_analyzer_session(Parent, params)
+
+            get_player_elo_overlay(Parent, params)
 
 
 def ReloadSettings(json_data):

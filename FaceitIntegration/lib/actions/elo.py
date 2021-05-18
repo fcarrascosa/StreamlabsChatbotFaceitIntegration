@@ -1,3 +1,6 @@
+import codecs
+import os
+
 from ..FaceitApi import get_player
 
 
@@ -13,3 +16,13 @@ def get_player_info(parent, arguments):
         'player_id': player_info['player_id'],
         'player': player
     }
+
+
+def get_player_elo_overlay(parent, arguments):
+    data_directory = os.path.join(os.path.dirname(__file__), '..', '..', 'overlays', 'text')
+    data_file = os.path.join(data_directory, 'elo.txt')
+
+    elo = get_player_info(parent, arguments)['elo']
+    with codecs.open(data_file, encoding='utf-8-sig', mode='w+') as f:
+        f.write(
+            '{0}'.format(elo))
